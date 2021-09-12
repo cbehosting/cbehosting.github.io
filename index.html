@@ -1,0 +1,73 @@
+<!doctype html>
+
+<html>
+    <head>
+        <meta property="og:type" content="website">
+<meta property="og:title" content="CBE">
+<meta property="og:description" content="Host CBE NBTs">
+<meta property="og:image" content="https://static.wikia.nocookie.net/minecraft_gamepedia/images/7/79/Beehive_%28N%29_JE1.png/revision/latest?cb=20210115140255">
+<meta name="theme-color" content="#AC8E54">
+    </head>
+
+    <body onload="apiformat()">
+    <h1 style="font-family:'Segoe UI'">CBE Hosting</h1><br>
+    <label style="font-family:'Segoe UI'" id="name"></label><br>
+    <label style="font-family:'Segoe UI'" id="type"></label><br>
+    <label style="font-family:'Segoe UI'" id="command"></label><br>
+    <pre style="word-wrap: break-word; white-space: pre-wrap; font-size: 15px" id="output"></pre><br>
+    <button style="font-family:'Segoe UI'; width:250px; height:30px; cursor:pointer; font-size:16px;" onclick="reload()" id="goto"></button>
+        
+        <script>
+            let type = "";
+            function apiformat(){
+    var command = "";
+    let fullurl = window.location.href;
+    var fields = fullurl.split('/');
+    var nbtname = fields[4];
+    var completename = nbtname.replace(/%20/g, ' ');
+    var uploader = fields[5];
+    var completeuploader = uploader.replace(/%20/g, ' ');
+    type = fields[6];
+    var final = fields[3].substring(1);
+    if(type == "movingblock")
+    {
+    command = "{Count:1b,Name:\"minecraft:movingBlock\",tag:{movingBlock:{name:\"minecraft:dirt\",states:{}version:17879555}movingEntity:{Occupants:[{ActorIdentifier:\"minecraft:command_block_minecart<>\",SaveData:{Command:\"" + final +"\",ExecuteOnFirstTick:1b,TickDelay:5,Ticking:1b,definitions:[\" + minecraft:falling_block\"]},TicksLeftToStay:0}],ShouldSpawnBees:0b,id:\"Beehive\",isMovable:1b}}}";
+    document.getElementById("type").innerHTML = "<b>Type:</b> movingBlock";
+    document.getElementById("goto").innerHTML = "See The Beehive Equivalent"
+    }
+    else  if(type == "beehive")
+    {
+      command =   "{Count:1b,Damage:15s,Name:\"minecraft:beehive\",tag:{Occupants:[{ActorIdentifier:\"minecraft:command_block_minecart<>\",SaveData:{Command:\"" + final + "\",Ticking:1b,TicksLeftToStay:1}}]}}";
+     document.getElementById("type").innerHTML = "<b>Type:</b> Beehive";
+     document.getElementById("goto").innerHTML = "See The movingBlock Equivalent"
+    }
+    var completecommand = command.replace(/%20/g, ' ');
+    document.getElementById("command").innerHTML = "<b>Command:</b> /" + final.replace(/%20/g, ' ');
+    document.getElementById("output").innerHTML = completecommand;
+    document.getElementById("name").innerHTML = "<b>" + completename + "</b> made by " + completeuploader;
+    document.title = completename + " by " + completeuploader;
+
+
+
+            }
+
+            function reload(){
+
+                    if(type == "beehive")
+                    {
+                    var newurl = window.location.href.replace("beehive", "movingblock");
+                    window.location.replace(newurl);
+                    location.reload();
+                    }
+                    else if(type = "movingblock")
+                    {
+                    var newurl2 = window.location.href.replace("movingblock", "beehive");
+                    window.location.replace(newurl2);
+                    location.reload();
+                    }
+
+            }
+        </script>
+    </body>
+
+</html>
