@@ -11,7 +11,7 @@
 
     <body onload="apiformat()">
     <h1 style="font-family:'Segoe UI'">CBE Hosting</h1>
-    <label style="font-family:'Segoe UI'">test caption</label><br>
+        <label style="font-family:'Segoe UI'" id="nbtname"></label><br>
     <label style="font-family:'Segoe UI'" id="name"></label><br>
     <label style="font-family:'Segoe UI'" id="type"></label><br>
     <label style="font-family:'Segoe UI'" id="command"></label><br>
@@ -45,7 +45,8 @@
     var completecommand = command.replace(/%20/g, ' ');
     document.getElementById("command").innerHTML = "<b>Command:</b> /" + final.replace(/%20/g, ' ');
     document.getElementById("output").innerHTML = completecommand;
-    document.getElementById("name").innerHTML = "<b>" + completename + "</b> made by " + completeuploader;
+    document.getElementById("name").innerHTML = "<b>Uploader</b>: " + completeuploader;
+    document.getElementById("name").innerHTML = "<b>NBT Name</b>: " + completename;
     document.title = completename + " by " + completeuploader;
 
 
