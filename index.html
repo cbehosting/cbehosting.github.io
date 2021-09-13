@@ -75,10 +75,14 @@
             }
             
             function copyurl(){
-                var copyText = window.location.href;
-                copyText.select();
-                copyText.setSelectionRange(0, 99999);
-                navigator.clipboard.writeText(copyText.value);
+                var dummy = document.createElement('input'),
+    text = window.location.href;
+
+document.body.appendChild(dummy);
+dummy.value = text;
+dummy.select();
+document.execCommand('copy');
+document.body.removeChild(dummy);
             }
         </script>
     </body>
